@@ -31,6 +31,7 @@ alias move_initialize initialize
 		@disable_runs = false
 	end
 end
+
 #===========================================
 # Class updates for running' - don't mess with it.
 #===========================================
@@ -46,17 +47,17 @@ class Game_Player < Game_Character
 # Input checks
 #--------------
   def input_check
-	unless @disable_runs
-		#standard speed
-		@move_speed = 4
-			if Input.press?(Input::A)
-			#run speed
-			@move_speed = 5
-		end
-		if Input.press?(Input::X)
-			#slow speed
-			@move_speed = 3
-			end
+    unless @disable_runs
+      #standard speed
+      @move_speed = 4
+      if Input.press?(Input::A)
+        #run speed
+        @move_speed = 5
+      end
+      if Input.press?(Input::X)
+        #slow speed
+        @move_speed = 3
+      end
 		end
 	end
   
