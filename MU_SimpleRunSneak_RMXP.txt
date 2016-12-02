@@ -1,0 +1,80 @@
+#==============================================================================
+#  ** Very Simple Run/Sneak by Mutation
+#  For RPG Maker XP - Version 1.00
+# --------
+#
+#        What's a dashing hero without... dashing?
+# This script adds the functionality for a simple Run and Sneak.
+# It should be very compatible with anything, because of that?
+#
+# Defaults to using Shift/Z keys run. (Input::A)
+# And the A key to sneak (Input::X)
+# These keys aren't used in the unaltered engine, but if you find they are,
+# Press f1 and go to controls while ingame to find Inputs that aren't being used.
+#
+# Warning- this *does* mess with Move Routes!
+# To maintain speed changes during a Move Route on the player- put this:
+#    $game_player.toggle_run 
+# Before the Move Route and after the Wait for Move's Completion command!
+#==============================================================================
+
+class Game_Character
+    attr_reader :disable_runs
+
+#-----------------------------
+# Initialization - start your engines?
+#-----------------------------
+alias move_initialize initialize
+	def initialize
+		move_initialize
+    # Turn this to 'true' if you want to start the game without running enabled.
+    @disable_runs = false
+    #@route = RPG::MoveRoute.new
+	end
+  
+end
+#===========================================
+# Class updates for running' - don't mess with it.
+#===========================================
+class Game_Player < Game_Character
+
+	alias movement_update update
+	def update
+		movement_update
+		input_check
+	end
+
+#--------------  
+# Input checks
+#--------------
+  def input_check
+		unless @disable_runs
+      #standard speed
+      @move_speed = 4
+			if Input.press?(Input::A)
+        #run speed
+        @move_speed = 5
+      end
+      if Input.press?(Input::X)
+        #slow speed
+        @move_speed = 3
+      end
+		end
+	end
+  
+  
+#---------------- 
+# Toggle - anytime $game_player.toggle_run is called- 
+# This'll switch between enabling and disabling.
+#----------
+  def toggle_run
+    if @disable_runs == true
+      @disable_runs = false
+    else
+      @disable_runs = true
+    end
+    
+  end
+#-----------ZE END
+#------------------
+end
