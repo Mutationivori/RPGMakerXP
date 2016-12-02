@@ -27,11 +27,9 @@ class Game_Character
 alias move_initialize initialize
 	def initialize
 		move_initialize
-    # Turn this to 'true' if you want to start the game without running enabled.
-    @disable_runs = false
-    #@route = RPG::MoveRoute.new
+		# Turn this to 'true' if you want to start the game without running enabled.
+		@disable_runs = false
 	end
-  
 end
 #===========================================
 # Class updates for running' - don't mess with it.
@@ -48,17 +46,17 @@ class Game_Player < Game_Character
 # Input checks
 #--------------
   def input_check
-		unless @disable_runs
-      #standard speed
-      @move_speed = 4
+	unless @disable_runs
+		#standard speed
+		@move_speed = 4
 			if Input.press?(Input::A)
-        #run speed
-        @move_speed = 5
-      end
-      if Input.press?(Input::X)
-        #slow speed
-        @move_speed = 3
-      end
+			#run speed
+			@move_speed = 5
+		end
+		if Input.press?(Input::X)
+			#slow speed
+			@move_speed = 3
+			end
 		end
 	end
   
@@ -67,14 +65,13 @@ class Game_Player < Game_Character
 # Toggle - anytime $game_player.toggle_run is called- 
 # This'll switch between enabling and disabling.
 #----------
-  def toggle_run
-    if @disable_runs == true
-      @disable_runs = false
-    else
-      @disable_runs = true
-    end
-    
-  end
+	def toggle_run
+		if @disable_runs == true
+			@disable_runs = false
+		else
+			@disable_runs = true
+		end
+	end
 #-----------ZE END
 #------------------
 end
