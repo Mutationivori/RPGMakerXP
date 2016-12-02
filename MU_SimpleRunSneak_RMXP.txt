@@ -19,7 +19,7 @@
 #==============================================================================
 
 class Game_Character
-    attr_reader :disable_runs
+	attr_reader :disable_runs
 
 #-----------------------------
 # Initialization - start your engines?
